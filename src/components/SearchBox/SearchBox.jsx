@@ -1,11 +1,23 @@
-
+import { useState } from 'react';
 import { SearchBtn, SearchForm, SearchInput } from './SearchBox.styled';
 import { BsSearch } from 'react-icons/bs';
+import { toast } from 'react-hot-toast';
 
+export const SearchBox = ({onSubmit}) => {
+  const [query, setQuery] = useState('');
 
-export const SearchBox = () => {
+    const onFormSubmit = e => {
+        e.preventDefault();
+        const searchQuery = query.toLowerCase().trim()
+        if (searchQuery === '') {
+          return toast.error("It cannot be empty query! Example: 'Batman'!");
+        }
+        onSubmit(searchQuery);
+        setQuery("");
+    }
+    
   return (
-    <SearchForm>
+    <SearchForm onSubmit={onFormSubmit}>
       <SearchBtn type="submit">
         <BsSearch size={22} />
       </SearchBtn>
@@ -14,6 +26,8 @@ export const SearchBox = () => {
         autoComplete="off"
         autoFocus
         placeholder="Search movies"
+        value={query}
+        onChange={e => setQuery(e.target.value)}
       />
     </SearchForm>
   );
