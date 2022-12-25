@@ -5,10 +5,12 @@ import { MoviesList } from 'components/MovieList/MovieList';
 
 import { fetchSearchMovie } from 'services/movieApi';
 import { Loader } from 'components/Loader/Loader';
+import { toast } from 'react-hot-toast';
 
-export const Movies = () => {
+export default function Movies() {
   const [movies, setMovies] = useState([]);
   const [loader, setLoader] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
 
@@ -25,7 +27,7 @@ export const Movies = () => {
       try {
         const movies = await fetchSearchMovie(searchQuery);
         if (movies.length === 0) {
-          return;
+          return toast.error('Movie Not Found');
         }
         setMovies(movies);
       } catch (error) {
@@ -47,4 +49,4 @@ export const Movies = () => {
       {loader && <Loader />}
     </>
   );
-};
+}

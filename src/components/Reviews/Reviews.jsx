@@ -5,10 +5,10 @@ import { toast } from 'react-hot-toast';
 import { Loader } from 'components/Loader/Loader';
 import { fetchMovieReviews } from 'services/movieApi';
 
-
-export const Reviews = () => {
+export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -17,8 +17,8 @@ export const Reviews = () => {
     async function fetchReviews() {
       try {
         const reviews = await fetchMovieReviews(movieId);
-        console.log(reviews);
         if (reviews.length === 0) {
+          setError(true);
           return toast('Sorry, there are no reviews');
         }
         setReviews(reviews);
@@ -41,7 +41,8 @@ export const Reviews = () => {
           </li>
         ))}
       </ul>
-      {loader && <Loader/>}
+      {error && <p>We don't have reviews for this movie</p>}
+      {loader && <Loader />}
     </>
   );
-};
+}

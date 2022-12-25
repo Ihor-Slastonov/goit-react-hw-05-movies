@@ -6,19 +6,20 @@ import { Loader } from 'components/Loader/Loader';
 
 import { fetchMovieCredits } from 'services/movieApi';
 
-export const Cast = () => {
+export default function Cast() {
   const [casts, setCasts] = useState([]);
+  const [error, setError] = useState(false);
   const [loader, setLoader] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
-    setLoader(true);
     async function fetchCasts() {
       try {
         const casts = await fetchMovieCredits(movieId);
         if (casts.length === 0) {
-          return toast('Ooops, therea are no casts!Please, try again later');
-          }
+          setError(true);
+          return toast('Ooops, there are no cast! Please, try again later');
+        }
         setCasts(casts);
       } catch (error) {
         console.log(error);
@@ -26,6 +27,7 @@ export const Cast = () => {
         setLoader(false);
       }
     }
+    setLoader(true);
     fetchCasts();
   }, [movieId]);
 
@@ -34,9 +36,13 @@ export const Cast = () => {
       {casts && (
         <ul>
           {casts.map(cast => (
-            <li key={cast.id}>
+            <li key={cast.cast_id}>
               <img
-                src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
+                src={
+                  cast.profile_path
+                    ? `https://image.tmdb.org/t/p/w500${cast.profile_path}`
+                    : 'https://via.placeholder.com/300x500?text=Photo+Not+Found'
+                }
                 alt={cast.name}
                 width="100"
               />
@@ -46,8 +52,8 @@ export const Cast = () => {
           ))}
         </ul>
       )}
-
+      {error && <p>We don't have cast for this movie </p>}
       {loader && <Loader />}
     </>
   );
-};
+}

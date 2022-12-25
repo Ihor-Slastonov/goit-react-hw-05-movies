@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 
 export const MovieCard = ({ poster, title, year, vote, overview, genres }) => {
   return (
@@ -7,18 +8,21 @@ export const MovieCard = ({ poster, title, year, vote, overview, genres }) => {
         <h2>
           {title} ({year})
         </h2>
-        <p>User Score: {Math.floor(vote * 10)}%</p>
+        <p>User Score: {vote}%</p>
         <h3>Overview</h3>
         <p>{overview}</p>
         <h3>Genres</h3>
-        <ul>
-          {genres.map(genre => (
-            <li key={genre.id}>
-              <p>{genre.name}</p>
-            </li>
-          ))}
-        </ul>
+        <p>{genres}</p>
       </div>
     </div>
   );
+};
+
+MovieCard.propTypes = {
+  poster: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+  vote: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired,
+  genres: PropTypes.string.isRequired,
 };

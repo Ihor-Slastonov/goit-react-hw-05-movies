@@ -6,12 +6,11 @@ import { Loader } from 'components/Loader/Loader';
 import { fetchTrendMovies } from 'services/movieApi';
 import { MoviesList } from 'components/MovieList/MovieList';
 
-export const Home = () => {
+export default function Home() {
   const [movies, setMovies] = useState([]);
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    setLoader(true);
     async function fetchMoviesList() {
       try {
         const movies = await fetchTrendMovies();
@@ -35,4 +34,4 @@ export const Home = () => {
       {loader && <Loader />}
     </main>
   );
-};
+}
