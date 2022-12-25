@@ -36,7 +36,7 @@ export default function Movies() {
         setLoader(false);
       }
     }
-    setLoader(true);
+    setLoader(true)
     fechMovies();
   }, [searchQuery]);
 

@@ -1,10 +1,10 @@
 import ClipLoader from 'react-spinners/ClipLoader';
 
 export const Loader = () => {
-   const override = {
-     display: 'block',
-     margin: '50px auto',
-   }; 
+  const override = {
+    display: 'block',
+    margin: '50px auto',
+  };
   return (
     <>
       <ClipLoader

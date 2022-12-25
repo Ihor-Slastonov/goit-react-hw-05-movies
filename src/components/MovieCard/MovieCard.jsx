@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 
+import { CardWrapper, CardInfo } from './MovieCard.styled';
+
 export const MovieCard = ({ poster, title, year, vote, overview, genres }) => {
   return (
-    <div>
+    <CardWrapper>
       <img src={poster} alt={title} width="200" />
-      <div>
+      <CardInfo>
         <h2>
           {title} ({year})
         </h2>
@@ -13,8 +15,8 @@ export const MovieCard = ({ poster, title, year, vote, overview, genres }) => {
         <p>{overview}</p>
         <h3>Genres</h3>
         <p>{genres}</p>
-      </div>
-    </div>
+      </CardInfo>
+    </CardWrapper>
   );
 };
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
 import { Loader } from 'components/Loader/Loader';
+import { Title } from 'pages/Home/Home.styled';
 
 import { fetchTrendMovies } from 'services/movieApi';
 import { MoviesList } from 'components/MovieList/MovieList';
@@ -29,7 +30,7 @@ export default function Home() {
 
   return (
     <main>
-      <h1>Trending today</h1>
+      <Title>Trending today</Title>
       {movies && <MoviesList movies={movies} />}
       {loader && <Loader />}
     </main>

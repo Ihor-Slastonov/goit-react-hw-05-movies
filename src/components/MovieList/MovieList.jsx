@@ -14,10 +14,10 @@ export const MoviesList = ({ movies }) => {
               src={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : 'https://via.placeholder.com/300x500?text=Poster+Not+Found'
+                  : 'https://via.placeholder.com/278x417?text=Poster+Not+Found'
               }
               alt={movie.title}
-              width="200"
+              width="280"
             />
             <MovieName>{movie.title}</MovieName>
           </Link>

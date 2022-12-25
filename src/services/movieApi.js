@@ -31,7 +31,7 @@ export const fetchMovieCredits = async id => {
     },
   });
   return response.data.cast;
-}
+};
 
 export const fetchMovieReviews = async id => {
   const response = await axios.get(`${BASE_URL}movie/${id}/reviews`, {
@@ -41,7 +41,7 @@ export const fetchMovieReviews = async id => {
     },
   });
   return response.data.results;
-}
+};
 
 export const fetchSearchMovie = async query => {
   const response = await axios.get(`${BASE_URL}search/movie`, {
@@ -52,4 +52,4 @@ export const fetchSearchMovie = async query => {
     },
   });
   return response.data.results;
-}
+};
